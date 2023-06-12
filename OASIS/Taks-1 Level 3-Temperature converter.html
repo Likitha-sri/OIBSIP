@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        select {
+            padding: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+
+    <label for="temperature">Temperature:</label>
+    <input type="text" id="temperature" placeholder="Enter temperature" />
+
+    <label for="unit">Unit:</label>
+    <select id="unit">
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+        <option value="kelvin">Kelvin</option>
+    </select>
+
+    <button onclick="convertTemperature()">Convert</button>
+
+    <p id="result"></p>
+
+    <script>
+        function convertTemperature() {
+            var temperatureInput = document.getElementById("temperature").value;
+            var unitInput = document.getElementById("unit").value;
+            var resultElement = document.getElementById("result");
+            var convertedTemperature, convertedUnit;
+
+            if (unitInput === "celsius") {
+                convertedTemperature = (temperatureInput * 9/5) + 32;
+                convertedUnit = "Fahrenheit";
+            } else if (unitInput === "fahrenheit") {
+                convertedTemperature = (temperatureInput - 32) * 5/9;
+                convertedUnit = "Celsius";
+            } else if (unitInput === "kelvin") {
+                convertedTemperature = parseFloat(temperatureInput) + 273.15;
+                convertedUnit = "Kelvin";
+            }
+
+            resultElement.textContent = "Converted Temperature: " + convertedTemperature.toFixed(2) + " " + convertedUnit;
+        }
+    </script>
+</body>
+</html>

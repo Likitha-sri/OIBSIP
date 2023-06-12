@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .calculator {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .screen {
+            grid-column: 1 / span 4;
+            padding: 10px;
+            background-color: #f2f2f2;
+            text-align: right;
+            font-size: 24px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="screen" id="screen">0</div>
+        <button onclick="clearScreen()">C</button>
+        <button onclick="appendInput('/')" class="operator">/</button>
+        <button onclick="appendInput('7')">7</button>
+        <button onclick="appendInput('8')">8</button>
+        <button onclick="appendInput('9')">9</button>
+        <button onclick="appendInput('*')" class="operator">*</button>
+        <button onclick="appendInput('4')">4</button>
+        <button onclick="appendInput('5')">5</button>
+        <button onclick="appendInput('6')">6</button>
+        <button onclick="appendInput('-')" class="operator">-</button>
+        <button onclick="appendInput('1')">1</button>
+        <button onclick="appendInput('2')">2</button>
+        <button onclick="appendInput('3')">3</button>
+        <button onclick="appendInput('+')" class="operator">+</button>
+        <button onclick="appendInput('0')">0</button>
+        <button onclick="appendInput('.')">.</button>
+        <button onclick="calculateResult()">=</button>
+    </div>
+
+    <script>
+        var screen = document.getElementById("screen");
+        var expression = "";
+
+        function appendInput(input) {
+            expression += input;
+            screen.textContent = expression;
+        }
+
+        function clearScreen() {
+            expression = "";
+            screen

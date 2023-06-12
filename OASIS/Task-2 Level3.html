@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            width: 300px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do App</h1>
+
+    <form onsubmit="addTask(event)">
+        <input type="text" id="taskInput" placeholder="Enter a task" required />
+        <button type="submit">Add Task</button>
+    </form>
+
+    <h2>Pending Tasks</h2>
+    <ul id="pendingTasks"></ul>
+
+    <h2>Completed Tasks</h2>
+    <ul id="completedTasks"></ul>
+
+    <script>
+        var taskInput = document.getElementById("taskInput");
+        var pendingTasksList = document.getElementById("pendingTasks");
+        var completedTasksList = document.getElementById("completedTasks");
+
+        function addTask(event) {
+            event.preventDefault();
+            var task = taskInput.value;
+
+            if (task.trim() !== "") {
+                var listItem = document.createElement("li");
+                listItem.innerHTML = task;
+                listItem.onclick = function() {
+                    markTaskAsComplete(this);
+                };
+
+                pendingTasksList.appendChild(listItem);
+                taskInput.value = "";
+            }
+        }
+
+        function markTaskAsComplete(taskItem) {
+            taskItem.classList.toggle("completed");
+            var destinationList = taskItem.classList.contains("completed") ? completedTasksList : pendingTasksList;
+            destinationList.appendChild(taskItem);
+        }
+    </script>
+</body>
+</html>
